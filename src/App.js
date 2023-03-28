@@ -4,14 +4,17 @@ import Banner from './components/Banner';
 import Movies from './components/Movies';
 import Navbar from './components/Navbar';
 import Pagination from './components/Pagination';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Favourites from './components/Favourites';
 const App = () => {
   return (
-    <div>
+    <BrowserRouter>
       <Navbar />
-      <Banner />
-      <Movies />
-      <Pagination />
-    </div>
+      <Routes>
+        <Route path='/' element={<> <Banner /><Movies /><Pagination /> </>} />
+        <Route path='favourites' element={<Favourites />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

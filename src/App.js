@@ -1,14 +1,16 @@
 import React from 'react'
 import './App.css';
 import Banner from './components/Banner';
+import Movies from './components/Movies';
 import Navbar from './components/Navbar';
+import Pagination from './components/Pagination';
 const App = () => {
   return (
     <div>
       <Navbar />
       <Banner />
-      <h1>trending moveis</h1>
-      <h1>pagination</h1>
+      <Movies />
+      <Pagination />
     </div>
   )
 }

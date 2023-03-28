@@ -1,9 +1,22 @@
-import React from 'react'
-import Image from '../spider.jpg'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+
 const Banner = () => {
+    const [movies, setMovies] = useState({});
+
+    useEffect(() => {
+        axios.get('https://api.themoviedb.org/3/trending/movie/week?api_key=cddb112f0b930f95fcf4a1307f5285d1')
+            .then(response => {
+                console.table(response)
+                setMovies(response.data.results[0]);
+            })
+            .catch(error => {
+                console.table(error);
+            });
+    }, []);
     return (
-        <div className={`bg-[url(${Image})] h-[40vh] md:h-[60vh] bg-no-repeat bg-cover bg-center flex items-end `}>
-            <div className='md:text-3xl text-xl text-white bg-gray-900 w-full text-center py-4 bg-opacity-50'>Spider-Man : No Way Home</div>
+        <div className={`bg-[url(https://image.tmdb.org/t/p/original/${movies.backdrop_path})] h-[40vh] md:h-[70vh] bg-no-repeat bg-cover bg-center flex items-end bg-center `}>
+            <div className='md:text-3xl text-xl text-white bg-gray-900 w-full text-center py-4 bg-opacity-50'>{movies.title}</div>
         </div>
     )
 }

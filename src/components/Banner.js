@@ -7,11 +7,10 @@ const Banner = () => {
     useEffect(() => {
         axios.get('https://api.themoviedb.org/3/trending/movie/week?api_key=cddb112f0b930f95fcf4a1307f5285d1')
             .then(response => {
-                console.table(response)
                 setMovies(response.data.results[0]);
             })
             .catch(error => {
-                console.table(error);
+                console.log(error);
             });
     }, []);
     return (

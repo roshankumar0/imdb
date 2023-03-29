@@ -20,15 +20,26 @@ const Movies = () => {
         axios.get(`https://api.themoviedb.org/3/trending/movie/week?api_key=cddb112f0b930f95fcf4a1307f5285d1&page=${pageno}`)
             .then(response => {
                 setMovies(response.data.results);
+                let oldfav = localStorage.getItem('imdb')
+                oldfav = JSON.parse(oldfav)
+                setFavourites([...oldfav])
+
             })
             .catch(error => {
                 console.log(error);
             });
     }, [pageno]);
+
     let add = (movies) => {
-        const newmovies = [...favourites, movies]
+        let newmovies = [...favourites, movies]
         setFavourites([...newmovies])
         console.log(newmovies)
+        localStorage.setItem("imdb", JSON.stringify(newmovies))
+    }
+    const remove = (movie) => {
+        const newarray = favourites.filter((m) => m.id !== movie.id)
+        setFavourites([...newarray])
+        localStorage.setItem("imdb", JSON.stringify(newarray))
     }
 
     return (
@@ -54,7 +65,7 @@ const Movies = () => {
                             {hover === movie.id &&
                                 <>
                                     {!favourites.find((m) => m.id === movie.id) ? <div className='absolute top-2 right-2 bg-gray-900 rounded-full h-8 w-8 flex items-center justify-center cursor-pointer' onClick={() => add(movie)}>😍
-                                    </div> : <div className='absolute top-2 right-12 bg-gray-900 rounded-full h-8 w-8 flex items-center justify-center cursor-pointer' onClick={() => add(movie.id)}>⚔️
+                                    </div> : <div className='absolute top-2 right-12 bg-gray-900 rounded-full h-8 w-8 flex items-center justify-center cursor-pointer' onClick={() => remove(movie)}>⚔️
                                     </div>}
 
 

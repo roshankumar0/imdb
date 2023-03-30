@@ -3,13 +3,19 @@ import Pagination from './Pagination';
 const Favourites = () => {
   const [CurGenres, SetCurGenres] = useState('Actions');
   const [favourites, setFavourites] = useState([]);
-
+  const [genres, setGenres] = useState([])
+  // for Movies
   useEffect(() => {
     const oldfav = localStorage.getItem("imdb");
     if (oldfav) {
       setFavourites(JSON.parse(oldfav));
     }
   }, []);
+  // for genres
+  useEffect(() => {
+    // const temp = favourites.map((mv) => [mv.genre_ids][0])
+    // setGenres([...temp])
+  }, [favourites])
   // const remove = (movie) => {
   //   const newarray = favourites.filter((m) => m.id !== movie.id);
   //   setFavourites(newarray);
@@ -41,6 +47,7 @@ const Favourites = () => {
           <p>{mov.title}</p>
           <p>{mov.popularity}</p>
           <p>{mov.vote_average}</p>
+          <p>{mov.genre_ids[0]}</p>
         </div>
       ))}
 

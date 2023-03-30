@@ -12,3 +12,6 @@ const Navbar = () => {
 }
 
 export default Navbar
+ {/* <td className="border px-4 py-2">
+                <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt="" />
+              </td> */}

@@ -13,21 +13,21 @@ const Favourites = () => {
   }, []);
   // for genres
   useEffect(() => {
-    // const temp = favourites.map((mv) => [mv.genre_ids][0])
-    // setGenres([...temp])
+    const temp = favourites.map((mv) => [mv.genre_ids][0])
+    setGenres([...temp])
   }, [favourites])
-  // const remove = (movie) => {
-  //   const newarray = favourites.filter((m) => m.id !== movie.id);
-  //   setFavourites(newarray);
-  //   localStorage.setItem("imdb", JSON.stringify(newarray));
-  // };
+  const remove = (movie) => {
+    const newarray = favourites.filter((m) => m.id !== movie.id);
+    setFavourites(newarray);
+    localStorage.setItem("imdb", JSON.stringify(newarray));
+  };
   return (
     <div>
       <div className='flex space-x-8 flex-wrap mt-8 justify-center px-2'>
         <button
           className={CurGenres === 'All Genres' ? 'text-lg  bg-blue-400 text-white rounded-xl font-bold p-1 px-2 m-2' :
             "text-lg  bg-gray-400 hover:bg-blue-400 text-white rounded-xl font-bold p-1 px-2 m-2"}>
-          All Genres
+          My genres
         </button>
         <button
 
